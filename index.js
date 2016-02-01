@@ -90,6 +90,22 @@ function removeGlyf(ttf, condition) {
 }
 
 /**
+ * get ttf obj
+ *
+ * @param  {Object} file file
+ * @param  {Object} opts opts
+ * @return {Object}      ttfobj
+ */
+function getTtfObj(file, opts) {
+
+    if (file.ttfObject) {
+        return file.ttfObject;
+    }
+
+    return new TTFReader(opts).read(b2ab(file.contents));
+}
+
+/**
  * ttf concat fontmin plugin
  *
  * @param {string} file filename
@@ -104,7 +120,13 @@ module.exports = function (file, opts) {
         throw new Error('Missing file option for fontmin-concat');
     }
 
-    opts = objectAssign({hinting: true}, opts);
+    opts = objectAssign(
+        {
+            hinting: true,
+            optimize: true
+        },
+        opts
+    );
 
     var firstFile;
     var fileName;
@@ -155,7 +177,8 @@ module.exports = function (file, opts) {
             firstFile = file;
 
             // init font main
-            var mainTtfObject = new TTFReader(opts).read(b2ab(firstFile.contents));
+            var mainTtfObject = getTtfObj(firstFile, opts);
+
 
             fontMain = new TTF(mainTtfObject);
 
@@ -170,7 +193,7 @@ module.exports = function (file, opts) {
 
 
         // parse font
-        var ttfObject = new TTFReader(opts).read(b2ab(file.contents));
+        var ttfObject = getTtfObj(file, opts);
 
         removeGlyf(ttfObject, {
             unicode: getUnicodeByGlyf(fontMain.ttf)
@@ -206,8 +229,13 @@ module.exports = function (file, opts) {
         }
 
 
+
+        // optimize
+        if (opts.optimize) {
+            fontMain.optimize();
+        }
+
         // set contents
-        fontMain.optimize();
         var concatedObj = fontMain.get();
 
         concatdFile.ttfObject = concatedObj;
