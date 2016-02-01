@@ -29,4 +29,7 @@ fontmin.run(function (err, files) {
 });
 ```
 
+## Related
+
+- [fontmin](https://github.com/ecomfe/fontmin)
 
