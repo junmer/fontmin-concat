@@ -1,0 +1,35 @@
+{
+  "name": "fontmin-concat",
+  "version": "0.0.1",
+  "description": "concat fontmin plugin",
+  "license": "MIT",
+  "repository": "junmer/fontmin-concat",
+  "author": "junmer",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha --timeout=50000"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "fontmin",
+    "concat"
+  ],
+  "dependencies": {
+    "b3b": "0.0.1",
+    "buffer-to-vinyl": "^1.1.0",
+    "fonteditor-core": "0.0.5",
+    "is-ttf": "^0.2.0",
+    "object-assign": "^4.0.1",
+    "replace-ext": "0.0.1",
+    "through2": "^0.6.1"
+  },
+  "devDependencies": {
+    "del": "^2.2.0",
+    "mocha": "^2.1.0",
+    "vinyl-fs": "^2.3.1"
+  }
+}
