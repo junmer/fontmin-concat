@@ -1,6 +1,6 @@
 {
   "name": "fontmin-concat",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "concat fontmin plugin",
   "license": "MIT",
   "repository": "junmer/fontmin-concat",
