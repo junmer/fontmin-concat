@@ -10,6 +10,8 @@ $ npm install --save fontmin-concat
 
 ## Usage
 
+To merge all fonts under `fonts` into one font, named `new.ttf`:
+
 ```js
 var Fontmin = require('fontmin');
 var concat = require('fontmin-concat');
@@ -28,7 +30,6 @@ fontmin.run(function (err, files) {
     console.log('Files concat successfully!'); 
 });
 ```
-
 ## Related
 
 - [fontmin](https://github.com/ecomfe/fontmin)
